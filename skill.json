@@ -1,0 +1,19 @@
+{
+  "name": "bao-agent-wallet",
+  "version": "1.0.0",
+  "description": "Autonomous wallet skill for AI agents — ERC-8004 identity, x402 micropayments, TEE governance, cross-chain liquidity stubs.",
+  "main": "index.js",
+  "capabilities": [
+    "identity-registration",
+    "micropayments",
+    "permission-governance",
+    "liquidity-optimization"
+  ],
+  "permissions": {
+    "network": true
+  },
+  "env": {
+    "PRIVATE_KEY": "e1daae5ad5dde1336a7fe091e4e029bf64664887c5f117d4a0f498de36e5ab7a
+"
+  }
+}

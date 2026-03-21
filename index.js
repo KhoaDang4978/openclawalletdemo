@@ -94,19 +94,12 @@ export const tools = {
    * payForApi(url)
    * Pays a 402-gated endpoint using x402 protocol with fee cap enforcement
    */
- async payForApi(url) {
+  async payForApi(url) {
     console.log(`[x402] Attempting payment for: ${url}`);
 
-    // Use a real x402 demo endpoint
-    const DEMO_ENDPOINTS = {
-      "weather": "https://x402.org/demo/weather",
-      "news": "https://x402.org/demo/news",
-      "price": "https://x402.org/demo/price",
-    };
-
-    // Match keyword to demo endpoint
-    const keyword = Object.keys(DEMO_ENDPOINTS).find(k => url.toLowerCase().includes(k));
-    const targetUrl = DEMO_ENDPOINTS[keyword] || url;
+    // Match keyword to a real x402 demo endpoint
+    const keyword = Object.keys(X402_ENDPOINTS).find(k => url.toLowerCase().includes(k));
+    const targetUrl = X402_ENDPOINTS[keyword] || url;
     console.log(`[x402] Resolved endpoint: ${targetUrl}`);
 
     // Simulate 402 challenge
@@ -116,6 +109,7 @@ export const tools = {
       network: "base-sepolia",
       endpoint: targetUrl,
     };
+    console.log("[x402] Challenge received:", challenge);
 
     // Check fee cap before paying
     const allowed = await tools.enforceRule("pay-api", parseFloat(challenge.amount));
